@@ -1,8 +1,9 @@
-// This is a placeholder file to show how you can "mock" fetch requests using
-// the nock library.
-// You can delete the contents of the file once you have understood how it
-// works.
+import { displayInputForm } from ".input-user.mjs";
 
 export function makeFetchRequest() {
   return fetch("https://example.com/test");
 }
+
+displayInputForm();
+
+
