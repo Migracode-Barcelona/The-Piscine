@@ -56,3 +56,24 @@ h2 {
     font-size: 20px;
     margin: 0;
 }
+
+#user-input {
+    width: 550px;
+    height: 40px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+#submit-button {
+    height: 30px;
+    width: 100px;
+    align-items: center;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+#for-input-user {
+    width: 670px;
+    color: gray;
+    font-size: small;
+}
