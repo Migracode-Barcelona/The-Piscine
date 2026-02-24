@@ -77,3 +77,7 @@ h2 {
     color: gray;
     font-size: small;
 }
+
+#showing-users {
+    color: var(--font-primary-color);
+}
