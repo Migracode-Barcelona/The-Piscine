@@ -1,9 +1,14 @@
 //DISPLAYING FOR LEADERBOARD PAGE
 //BUTTONS
 
+import * as userData from "./components/get-users-input.mjs"
+
+let tableData = [];
+
 function setup(){
     leaderboardButtons();
     addNavCategory();
+    addTable();
 }
 
 function leaderboardButtons() {
@@ -35,6 +40,31 @@ function addNavCategory() {
     const categoryContainer = document.getElementById("category-nav")
 
     categoryContainer.append(overall, completedKatas, authoredKatas, ranks);
+}
+
+//Displaying the table
+function addTable() {
+
+    const table = document.createElement("table"); 
+    table.id = "table-leaderboards";
+    const column = document.createElement("tr");
+    const tableHead0 = document.createElement("th");
+    tableHead0.textContent = "POSITION";
+    const tableHead1 = document.createElement("th");
+    tableHead1.textContent = "USER";
+    const tableHead2 = document.createElement("th");
+    tableHead2.textContent = "CLAN";
+    const tableHead3 = document.createElement("th");
+    tableHead3.textContent = "HONOR";
+    const tableContainer = document.getElementById("table-container");
+
+    column.append(tableHead0, tableHead1, tableHead2, tableHead3); 
+    table.appendChild(column);
+    tableContainer.appendChild(table);
+
+    for(let i = 0; i < userData.getUser.length; i++) {
+
+    }
 }
 
 
