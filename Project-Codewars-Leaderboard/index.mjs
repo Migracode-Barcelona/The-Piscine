@@ -1,64 +1,64 @@
-
-import * as getUsersInput from "./components/get-users-input.mjs"
+import * as getUsersInput from "./components/get-users-input.mjs";
 
 function setup() {
   displayInputForm();
   buttonUser();
+  submitForwarding();
 }
 
 //DISPLAYING FOR MAIN PAGE
 function displayInputForm() {
-    const inputContainer = document.getElementById("input-form"); //div 
+  const inputContainer = document.getElementById("input-form"); //div
 
-    const userInput = document.createElement("input");  //input text
-    userInput.type = "text";
-    userInput.id = "user-input";
+  const userInput = document.createElement("input"); //input text
+  userInput.type = "text";
+  userInput.id = "user-input";
 
-    const addUserButton = document.createElement("button"); //adduser button
-    addUserButton.id = "adding-user"
-    addUserButton.textContent = "Add User"
+  const addUserButton = document.createElement("button"); //adduser button
+  addUserButton.id = "adding-user";
+  addUserButton.textContent = "Add User";
 
-    const showUsers = document.createElement("p"); //p (paragraph for user)
-    showUsers.id = "showing-users"; 
-    // showUsers.innerHTML = "";
-    // showUsers.textContent = "Hello World";
-    // showUsers.hidden = true; 
+  const showUsers = document.createElement("p"); //p (paragraph for user)
+  showUsers.id = "showing-users";
+  // showUsers.innerHTML = "";
+  // showUsers.textContent = "Hello World";
+  // showUsers.hidden = true;
 
-    const userContainer = document.createElement("div"); //div p container
-    userContainer.id = "users-container";
-    
-    inputContainer.append(userInput, addUserButton);   
+  const userContainer = document.createElement("div"); //div p container
+  userContainer.id = "users-container";
 
-    const submitButton = document.createElement("button"); //submit Button 
-    submitButton.id = "submit-button";
-    submitButton.textContent = "Submit Users";
-    submitButton.hidden = true;
+  inputContainer.append(userInput, addUserButton);
 
-    userContainer.append(showUsers, submitButton);
-    const body = document.querySelector("body"); 
-    body.appendChild(userContainer);
+  const submitButton = document.createElement("a"); //submit Button
+  submitButton.id = "submit-button";
+  submitButton.textContent = "Submit Users";
+  submitButton.hidden = true;
+
+  userContainer.append(showUsers, submitButton);
+  const body = document.querySelector("body");
+  body.appendChild(userContainer);
 }
 
 //BUTTON FOR ADDING USER IN MAIN HTML
-function buttonUser(){
+function buttonUser() {
   const addUserButton = document.getElementById("adding-user");
   addUserButton.addEventListener("click", () => {
-   getUsersInput.displayUser();
+    getUsersInput.displayUser();
 
     if (getUsersInput.getUser.length > 0) {
       const submitButton = document.getElementById("submit-button");
-      submitButton.hidden = false
+      submitButton.hidden = false;
     } else return;
-
-});
+  });
 }
 
+//event listerner for submit button
+function submitForwarding() {
+  const submitButton = document.getElementById("submit-button");
 
+  submitButton.addEventListener("click", () => {
+    submitButton.href = "leaderboard.html";
+  });
+}
 
 window.onload = setup;
-
-
-
-
-
-
