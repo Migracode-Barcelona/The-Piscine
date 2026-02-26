@@ -1,0 +1,10 @@
+@import url("./style.css");
+
+body {
+    background: var(--backgroundcolor);
+}
+
+#button-container {
+    position:fixed;
+    
+}
