@@ -43,6 +43,7 @@ function displayInputForm() {
 function buttonUser() {
   const addUserButton = document.getElementById("adding-user");
   addUserButton.addEventListener("click", () => {
+    getUsersInput.gettingInput("user-input", getUsersInput.getUser);
     getUsersInput.displayUser();
 
     if (getUsersInput.getUser.length > 0) {
