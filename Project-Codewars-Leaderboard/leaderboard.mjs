@@ -4,7 +4,6 @@ import * as display from "./components/display.mjs";
 let tableData = [];
 let moreUsers = "";
 let userArray = JSON.parse(sessionStorage.getItem("users")); //RETRIEVE USERS FROM INDEX
-console.log(userArray);
 
 //BACK-BUTTON AND ADD MORE USERS BUTTON (LEADERBOARD PAGE)
 display.addMoreButton();

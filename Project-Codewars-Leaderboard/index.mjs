@@ -21,7 +21,6 @@ addUserButton.addEventListener("click", () => {
 const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", () => {
   sessionStorage.setItem("users", JSON.stringify(getUsersInput.getUser)); // FETCHING USERS FROM INDEX.HTML
-  console.log(getUsersInput.getUser);
   submitButton.href = "leaderboard.html"; //FORWARDING
   // getUsersInput.fetchUsers(getUsersInput.getUser);
 });
