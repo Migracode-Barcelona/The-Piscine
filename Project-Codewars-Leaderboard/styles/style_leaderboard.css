@@ -2,6 +2,7 @@
 
 body {
   background: var(--backgroundcolor);
+  color: white;
 }
 
 #button-container {

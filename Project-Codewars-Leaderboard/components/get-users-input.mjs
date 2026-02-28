@@ -18,19 +18,19 @@ export function displayUser() {
   showUsers.textContent = getUser;
 }
 
-async function fetchUsers(users) {
-  let endpoint = "https://www.codewars.com/api/v1/users/";
-  const results = [];
+// async function fetchUsers(users) {
+//   let endpoint = "https://www.codewars.com/api/v1/users/";
+//   const results = [];
 
-  for (let i = 0; i < getUser.length; i++) {
-    const userDatas = users.map(async (username) => {
-      const res = await fetch(`${endpoint}${username}`);
-      if (!res.ok) throw new Error(`Failed to receive data of ${username}`);
-      return res.json();
-    });
+//   for (let i = 0; i < getUser.length; i++) {
+//     const userDatas = users.map(async (username) => {
+//       const res = await fetch(`${endpoint}${username}`);
+//       if (!res.ok) throw new Error(`Failed to receive data of ${username}`);
+//       return res.json();
+//     });
 
-    const allData = await Promise.all(userDatas);
-    results.push(...allData);
-  }
-  return results;
-}
+//     const allData = await Promise.all(userDatas);
+//     results.push(...allData);
+//   }
+//   return results;
+// }
