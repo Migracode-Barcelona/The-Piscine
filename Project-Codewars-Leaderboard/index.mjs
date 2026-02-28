@@ -1,18 +1,8 @@
 import * as getUsersInput from "./components/get-users-input.mjs";
 
-function setup() {
-  displayInputForm();
-  buttonUser();
-  submitForwarding();
-}
-
 //DISPLAYING FOR MAIN PAGE
 function displayInputForm() {
   const inputContainer = document.getElementById("input-form"); //div
-
-  const userInput = document.createElement("input"); //input text
-  userInput.type = "text";
-  userInput.id = "user-input";
 
   const addUserButton = document.createElement("button"); //adduser button
   addUserButton.id = "adding-user";
@@ -20,46 +10,37 @@ function displayInputForm() {
 
   const showUsers = document.createElement("p"); //p (paragraph for user)
   showUsers.id = "showing-users";
-  // showUsers.innerHTML = "";
-  // showUsers.textContent = "Hello World";
-  // showUsers.hidden = true;
 
   const userContainer = document.createElement("div"); //div p container
   userContainer.id = "users-container";
-
-  inputContainer.append(userInput, addUserButton);
 
   const submitButton = document.createElement("a"); //submit Button
   submitButton.id = "submit-button";
   submitButton.textContent = "Submit Users";
   submitButton.hidden = true;
 
+  inputContainer.appendChild(addUserButton);
   userContainer.append(showUsers, submitButton);
   const body = document.querySelector("body");
   body.appendChild(userContainer);
 }
 
+displayInputForm();
+
 //BUTTON FOR ADDING USER IN MAIN HTML
-function buttonUser() {
-  const addUserButton = document.getElementById("adding-user");
-  addUserButton.addEventListener("click", () => {
-    getUsersInput.gettingInput("user-input", getUsersInput.getUser);
-    getUsersInput.displayUser();
+const addUserButton = document.getElementById("adding-user");
+addUserButton.addEventListener("click", () => {
+  getUsersInput.gettingInput("user-input", getUsersInput.getUser);
+  getUsersInput.displayUser();
 
-    if (getUsersInput.getUser.length > 0) {
-      const submitButton = document.getElementById("submit-button");
-      submitButton.hidden = false;
-    } else return;
-  });
-}
+  if (getUsersInput.getUser.length > 0) {
+    const submitButton = document.getElementById("submit-button");
+    submitButton.hidden = false;
+  } else return;
+});
 
-//event listerner for submit button
-function submitForwarding() {
-  const submitButton = document.getElementById("submit-button");
-
-  submitButton.addEventListener("click", () => {
-    submitButton.href = "leaderboard.html";
-  });
-}
-
-window.onload = setup;
+//EVENT LISTENER FOR SUBMIT BUTTON
+const submitButton = document.getElementById("submit-button");
+submitButton.addEventListener("click", () => {
+  submitButton.href = "leaderboard.html";
+});

@@ -1,6 +1,6 @@
 export let getUser = [];
 
-const userData = [];
+// const userData = [];
 
 //GETTING THE USERS INPUT
 export function gettingInput(idName, storage) {
@@ -14,7 +14,6 @@ export function displayUser() {
   const userContainer = document.createElement("div"); //div p container
   userContainer.id = "users-container";
   const showUsers = document.getElementById("showing-users"); //p
-
   showUsers.textContent = getUser;
 }
 
