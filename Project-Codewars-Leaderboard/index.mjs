@@ -8,8 +8,13 @@ display.displayInputForm();
 //BUTTON FOR ADDING USER IN MAIN HTML
 const addUserButton = document.getElementById("adding-user");
 addUserButton.addEventListener("click", () => {
-  getUsersInput.gettingInput("user-input", getUsersInput.getUser);
-  getUsersInput.displayUser();
+  getUsersInput.gettingInput(
+    "user-input",
+    getUsersInput.getUser,
+    getUsersInput.tempInput,
+    getUsersInput.inserteduser,
+    "showing-users",
+  );
 
   if (getUsersInput.getUser.length > 0) {
     const submitButton = document.getElementById("submit-button");

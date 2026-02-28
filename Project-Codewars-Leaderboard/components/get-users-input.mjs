@@ -1,22 +1,35 @@
 export let getUser = [];
+export let tempInput = "";
+export let inserteduser = [];
 
 // const userData = [];
 
 //GETTING THE USERS INPUT
-export function gettingInput(idName, storage) {
+//idName = inputForm
+//storage = MainStorage
+//tempStorage = Input Value temporary Storage
+//inserted = array Storage that will be pushed to main storage
+//display = where to display the value
+export function gettingInput(idName, storage, tempStorage, inserted, display) {
   const inputElement = document.getElementById(idName); //input
-  storage.push(inputElement.value);
-  //   storage = localStorage.setItem("users", inputElement.value);
-  //   console.log(storage);
+  tempStorage = inputElement.value;
+
+  if (tempStorage.includes(" ")) {
+    inserted = tempStorage.split(" ");
+    storage.push(inserted);
+    displayUser(getUser, display);
+  } else {
+    storage.push(tempStorage);
+    displayUser(getUser, display);
+  }
 }
 
+// module.exports = gettingInput;
+
 //THIS FUNCTION IS GETTING THE USERS FROM INPUT AND PUSHING TO ARRAY AS WELL AS DISPLAY IT
-export function displayUser() {
-  //displaying
-  const userContainer = document.createElement("div"); //div p container
-  userContainer.id = "users-container";
-  const showUsers = document.getElementById("showing-users"); //p
-  showUsers.textContent = getUser;
+export function displayUser(array, displayContainer) {
+  const showUsers = document.getElementById(displayContainer); //p users container
+  showUsers.textContent = array;
 }
 
 export async function fetchUsers(users) {
