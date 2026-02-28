@@ -1,0 +1,92 @@
+.kanit-bold {
+  font-family: "Kanit", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.kanit-regular {
+  font-family: "Kanit-normal", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --backgroundcolor: linear-gradient(to bottom left, #0f172a, #1e1a78, #0f172a);
+  --primary-font-h1: "Kanit";
+  --secondary-font-weight: "Kanit-normal";
+  --font-primary-color: white;
+  --font-secondary-color: black;
+  --font-size-h1: 70px;
+  --font-size-h2: 20px;
+  --color-extra: gray;
+  /* --button-padding: 10px, 20px; */
+}
+
+html,
+body {
+  background: var(--backgroundcolor);
+  height: 100%;
+  margin: 0;
+  color: white;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#icon {
+  height: 70px;
+  width: 70px;
+}
+
+h1 {
+  font-family: var(--primary-font-h1);
+  color: white;
+  font-size: var(--font-size-h1);
+  font-weight: bold;
+  background: -webkit-linear-gradient(#5863f8, white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+h2 {
+  color: var(--font-primary-color);
+  font: var(--secondary-font-weight);
+  font-size: var(--font-size-h2);
+  margin: 0;
+}
+
+#user-input {
+  width: 550px;
+  height: 40px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+#adding-user {
+  height: 30px;
+  width: 100px;
+  align-items: center;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+#label-input_form {
+  width: 670px;
+  color: var(--color-extra);
+  font-size: small;
+}
+
+#showing-users {
+  color: var(--font-primary-color);
+}
+
+#submit-button {
+  color: var(--font-secondary-color);
+  background-color: var(--font-primary-color);
+  padding: 5px;
+}

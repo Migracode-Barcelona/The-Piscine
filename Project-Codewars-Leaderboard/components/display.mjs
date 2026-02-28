@@ -1,0 +1,116 @@
+export function displayInputForm() {
+  const inputContainer = document.getElementById("input-form"); //div
+
+  const addUserButton = document.createElement("button"); //adduser button
+  addUserButton.id = "adding-user";
+  addUserButton.textContent = "Add User";
+
+  const showUsers = document.createElement("p"); //p (paragraph for user)
+  showUsers.id = "showing-users";
+
+  const userContainer = document.createElement("div"); //div p container
+  userContainer.id = "users-container";
+
+  const submitButton = document.createElement("a"); //submit Button
+  submitButton.id = "submit-button";
+  submitButton.textContent = "Submit Users";
+  submitButton.hidden = true;
+
+  inputContainer.appendChild(addUserButton);
+  userContainer.append(showUsers, submitButton);
+  const body = document.querySelector("body");
+  body.appendChild(userContainer);
+}
+
+export function categoryDisplay() {
+  const overall = document.createElement("button");
+  overall.id = "overall";
+  overall.textContent = "Overall";
+
+  const completedKatas = document.createElement("button");
+  completedKatas.id = "completed-katas";
+  completedKatas.textContent = "Completed Katas";
+
+  const authoredKatas = document.createElement("button");
+  authoredKatas.id = "authored-katas";
+  authoredKatas.textContent = "Authored Katas";
+
+  const ranks = document.createElement("button");
+  ranks.id = "ranks";
+  ranks.textContent = "Ranks";
+
+  const categoryContainer = document.getElementById("category-nav");
+  categoryContainer.append(overall, completedKatas, authoredKatas, ranks);
+}
+
+export function tableDisplay() {
+  const table = document.createElement("table");
+  table.id = "table-leaderboards";
+
+  const column = document.createElement("tr");
+
+  const tableHead0 = document.createElement("th");
+  tableHead0.textContent = "POSITION";
+
+  const tableHead1 = document.createElement("th");
+  tableHead1.textContent = "USER";
+
+  const tableHead2 = document.createElement("th");
+  tableHead2.textContent = "CLAN";
+
+  const tableHead3 = document.createElement("th");
+  tableHead3.textContent = "HONOR";
+
+  const tableContainer = document.getElementById("table-container");
+
+  column.append(tableHead0, tableHead1, tableHead2, tableHead3);
+  table.appendChild(column);
+  tableContainer.appendChild(table);
+}
+
+//
+
+export function modalAddingUser() {
+  const modalContainer = document.createElement("div");
+  modalContainer.classList = "modal fade";
+  modalContainer.id = "myModal";
+  modalContainer.tabIndex = -1;
+  modalContainer.innerHTML = `<div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel">ADD MORE USERS</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+        <p>Type usernames</p>
+        <input type="text" placeholder="user1, user2, user3" id="more-users"></input>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="submit-more-users">Submit Users</button>
+        </div>
+
+      </div>
+    </div>`;
+  document.body.appendChild(modalContainer);
+  const modal = new bootstrap.Modal(document.getElementById("myModal"));
+  modal.hide();
+}
+
+export function addMoreButton() {
+  const buttonsContainer = document.getElementById("button-container");
+
+  const backButton = document.createElement("a");
+  backButton.id = "back-button";
+  backButton.textContent = "Back to Arena";
+
+  const addAnotherUserButton = document.createElement("button");
+  addAnotherUserButton.type = "button";
+  addAnotherUserButton.classList = "btn btn-primary";
+  addAnotherUserButton.id = "add-another_user";
+  addAnotherUserButton.textContent = "Add Another User";
+
+  buttonsContainer.append(backButton, addAnotherUserButton);
+}
