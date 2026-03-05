@@ -1,6 +1,7 @@
 import * as getUsersInput from "./components/get-users-input.mjs";
 import * as display from "./components/display.mjs";
 
+
 //DISPLAYING FOR MAIN PAGE
 
 display.displayInputForm();
@@ -27,5 +28,6 @@ const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", () => {
   sessionStorage.setItem("users", JSON.stringify(getUsersInput.getUser)); // FETCHING USERS FROM INDEX.HTML
   submitButton.href = "leaderboard.html"; //FORWARDING
+  getUsersInput.fetchUsers(getUsersInput.getUser);
   // getUsersInput.fetchUsers(getUsersInput.getUser);
 });

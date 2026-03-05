@@ -12,12 +12,13 @@ export let inserteduser = [];
 //display = where to display the value
 export function gettingInput(idName, storage, tempStorage, inserted, display) {
   const inputElement = document.getElementById(idName); //input
-  tempStorage = inputElement.value;
+  tempStorage = inputElement.value.trim();
 
   if (tempStorage.includes(" ")) {
     inserted = tempStorage.split(" ");
-    storage.push(inserted);
+    storage.push(...inserted);
     displayUser(getUser, display);
+    
   } else {
     storage.push(tempStorage);
     displayUser(getUser, display);
