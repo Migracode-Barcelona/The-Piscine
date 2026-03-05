@@ -20,28 +20,28 @@ function seedDemoBookmarks() {
   const now = Date.now();
 
   const demoData = {
-    1: [
-      { id: now + 1, url: "https://git-scm.com/cheat-sheet", title: "Git Cheat Sheet", description: "Official Git command reference and quick help guide.", createdAt: now - 800000, likes: 0 },
-      { id: now + 2, url: "https://luisdalmolin.dev/blog/ignoring-files-in-git-without-gitignore/", title: "Ignoring Files in Git Without .gitignore", description: "Learn how to ignore files locally without modifying .gitignore.", createdAt: now - 700000, likes: 0 },
-    ],
+  user1: [
+    { id: now + 1, url: "https://git-scm.com/cheat-sheet", title: "Git Cheat Sheet", description: "Official Git command reference and quick help guide.", createdAt: now - 800000, likes: 0 },
+    { id: now + 2, url: "https://luisdalmolin.dev/blog/ignoring-files-in-git-without-gitignore/", title: "Ignoring Files in Git Without .gitignore", description: "Learn how to ignore files locally without modifying .gitignore.", createdAt: now - 700000, likes: 0 }
+  ],
 
-    2: [
-      { id: now + 3, url: "https://chrome.dev/anchor-tool/", title: "Chrome Anchor Tool", description: "Tool for debugging and positioning CSS anchor elements.", createdAt: now - 600000, likes: 0 },
-      { id: now + 4, url: "https://macarthur.me/posts/long-tasks/", title: "Understanding Long Tasks in JavaScript", description: "How long tasks block the main thread and affect performance.", createdAt: now - 500000, likes: 0 },
-    ],
+  user2: [
+    { id: now + 3, url: "https://chrome.dev/anchor-tool/", title: "Chrome Anchor Tool", description: "Tool for debugging and positioning CSS anchor elements.", createdAt: now - 600000, likes: 0 },
+    { id: now + 4, url: "https://macarthur.me/posts/long-tasks/", title: "Understanding Long Tasks in JavaScript", description: "How long tasks block the main thread and affect performance.", createdAt: now - 500000, likes: 0 }
+  ],
 
-    3: [
-      { id: now + 5, url: "https://filemock.com/", title: "FileMock", description: "Generate mock files quickly for development and testing.", createdAt: now - 400000, likes: 0 },
-      { id: now + 6, url: "https://developer.mozilla.org", title: "MDN Web Docs", description: "Comprehensive documentation for web technologies.", createdAt: now - 300000, likes: 0 },
-    ],
+  user3: [
+    { id: now + 5, url: "https://filemock.com/", title: "FileMock", description: "Generate mock files quickly for development and testing.", createdAt: now - 400000, likes: 0 },
+    { id: now + 6, url: "https://developer.mozilla.org", title: "MDN Web Docs", description: "Comprehensive documentation for web technologies.", createdAt: now - 300000, likes: 0 }
+  ],
 
-    4: [
-      { id: now + 7, url: "https://stackoverflow.com", title: "Stack Overflow", description: "Community Q&A platform for developers.", createdAt: now - 200000, likes: 0 },
-      { id: now + 8, url: "https://modernfontstacks.com/", title: "Modern Font Stacks", description: "System font stacks for modern web design.", createdAt: now - 100000, likes: 0 },
-    ],
+  user4: [
+    { id: now + 7, url: "https://stackoverflow.com", title: "Stack Overflow", description: "Community Q&A platform for developers.", createdAt: now - 200000, likes: 0 },
+    { id: now + 8, url: "https://modernfontstacks.com/", title: "Modern Font Stacks", description: "System font stacks for modern web design.", createdAt: now - 100000, likes: 0 }
+  ],
 
-    5: []
-  };
+  user5: []
+};
 
   Object.entries(demoData).forEach(([userId, bookmarks]) => {
     const key = DATA_PREFIX + userId;
