@@ -1,6 +1,7 @@
 import * as getUsersInput from "./components/get-users-input.mjs";
 import * as display from "./components/display.mjs";
 
+
 //DISPLAYING FOR MAIN PAGE
 
 display.displayInputForm();
@@ -8,8 +9,13 @@ display.displayInputForm();
 //BUTTON FOR ADDING USER IN MAIN HTML
 const addUserButton = document.getElementById("adding-user");
 addUserButton.addEventListener("click", () => {
-  getUsersInput.gettingInput("user-input", getUsersInput.getUser);
-  getUsersInput.displayUser();
+  getUsersInput.gettingInput(
+    "user-input",
+    getUsersInput.getUser,
+    getUsersInput.tempInput,
+    getUsersInput.inserteduser,
+    "showing-users",
+  );
 
   if (getUsersInput.getUser.length > 0) {
     const submitButton = document.getElementById("submit-button");
@@ -21,7 +27,7 @@ addUserButton.addEventListener("click", () => {
 const submitButton = document.getElementById("submit-button");
 submitButton.addEventListener("click", () => {
   sessionStorage.setItem("users", JSON.stringify(getUsersInput.getUser)); // FETCHING USERS FROM INDEX.HTML
-  console.log(getUsersInput.getUser);
   submitButton.href = "leaderboard.html"; //FORWARDING
+  getUsersInput.fetchUsers(getUsersInput.getUser);
   // getUsersInput.fetchUsers(getUsersInput.getUser);
 });

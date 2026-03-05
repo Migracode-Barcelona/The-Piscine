@@ -3,12 +3,14 @@ import * as display from "./components/display.mjs";
 
 let tableData = [];
 let moreUsers = "";
+let moreUserStorage = [];
 let userArray = JSON.parse(sessionStorage.getItem("users")); //RETRIEVE USERS FROM INDEX
-console.log(userArray);
 
 //BACK-BUTTON AND ADD MORE USERS BUTTON (LEADERBOARD PAGE)
 display.addMoreButton();
 //
+
+// console.log(userArray);
 
 //CATEGORY NAVIGATION
 display.categoryDisplay();
@@ -32,7 +34,17 @@ backButton.addEventListener("click", () => {
 //FUNCTION FOR SUBMIT BUTTON FOR ADD MORE USERS
 const addMoreUser = document.getElementById("submit-more-users");
 addMoreUser.addEventListener("click", () => {
-  userData.gettingInput("more-users", userArray); //pushing
+  userArray.push(
+    userData.gettingInput(
+      "more-users",
+      userArray,
+      moreUsers,
+      moreUserStorage,
+      "more-user-container",
+    ),
+  );
+  //REMEMBER ITS PUSHING AN ARRAY TO AN ARRAY SO ITS BECOMING A COLELCTION OF ARRAYS
+  //MAKE SURE TO CONVERT FIRST BEFORE PUSHING
   console.log(userArray);
 });
 

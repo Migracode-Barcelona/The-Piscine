@@ -86,6 +86,7 @@ export function modalAddingUser() {
         <div class="modal-body">
         <p>Type usernames</p>
         <input type="text" placeholder="user1, user2, user3" id="more-users"></input>
+        <p id="more-user-container"></p>
         </div>
 
         <div class="modal-footer">

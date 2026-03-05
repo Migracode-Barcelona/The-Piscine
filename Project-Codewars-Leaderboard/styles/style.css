@@ -81,7 +81,7 @@ h2 {
   font-size: small;
 }
 
-#showing-users {
+#showing-users #more-user-container {
   color: var(--font-primary-color);
 }
 

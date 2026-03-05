@@ -1,6 +1,6 @@
 @import url("./style.css");
 
-body {
+body html {
   background: var(--backgroundcolor);
   color: white;
 }
