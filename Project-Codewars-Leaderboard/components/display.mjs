@@ -3,16 +3,20 @@ export function displayInputForm() {
 
   const addUserButton = document.createElement("button"); //adduser button
   addUserButton.id = "adding-user";
+  addUserButton.type = "button";
   addUserButton.textContent = "Add User";
+  addUserButton.setAttribute("aria-label", "Add usernames from the input field");
 
   const showUsers = document.createElement("p"); //p (paragraph for user)
   showUsers.id = "showing-users";
+  showUsers.setAttribute("aria-live", "polite");
 
   const userContainer = document.createElement("div"); //div p container
   userContainer.id = "users-container";
 
-  const submitButton = document.createElement("a"); //submit Button
+  const submitButton = document.createElement("button"); //submit Button
   submitButton.id = "submit-button";
+  submitButton.type = "button";
   submitButton.textContent = "Submit Users";
   submitButton.hidden = true;
 
@@ -25,18 +29,22 @@ export function displayInputForm() {
 export function categoryDisplay() {
   const overall = document.createElement("button");
   overall.id = "overall";
+  overall.type = "button";
   overall.textContent = "Overall";
 
   const completedKatas = document.createElement("button");
   completedKatas.id = "completed-katas";
+  completedKatas.type = "button";
   completedKatas.textContent = "Completed Katas";
 
   const authoredKatas = document.createElement("button");
   authoredKatas.id = "authored-katas";
+  authoredKatas.type = "button";
   authoredKatas.textContent = "Authored Katas";
 
   const ranks = document.createElement("button");
   ranks.id = "ranks";
+  ranks.type = "button";
   ranks.textContent = "Ranks";
 
   const categoryContainer = document.getElementById("category-nav");
@@ -46,25 +54,33 @@ export function categoryDisplay() {
 export function tableDisplay() {
   const table = document.createElement("table");
   table.id = "table-leaderboards";
+  table.setAttribute("aria-label", "Codewars leaderboard table");
 
+  const tableHead = document.createElement("thead");
   const column = document.createElement("tr");
+  const tableBody = document.createElement("tbody");
 
   const tableHead0 = document.createElement("th");
+  tableHead0.scope = "col";
   tableHead0.textContent = "POSITION";
 
   const tableHead1 = document.createElement("th");
+  tableHead1.scope = "col";
   tableHead1.textContent = "USER";
 
   const tableHead2 = document.createElement("th");
+  tableHead2.scope = "col";
   tableHead2.textContent = "CLAN";
 
   const tableHead3 = document.createElement("th");
+  tableHead3.scope = "col";
   tableHead3.textContent = "HONOR";
 
   const tableContainer = document.getElementById("table-container");
 
   column.append(tableHead0, tableHead1, tableHead2, tableHead3);
-  table.appendChild(column);
+  tableHead.appendChild(column);
+  table.append(tableHead, tableBody);
   tableContainer.appendChild(table);
 }
 
@@ -75,6 +91,8 @@ export function modalAddingUser() {
   modalContainer.classList = "modal fade";
   modalContainer.id = "myModal";
   modalContainer.tabIndex = -1;
+  modalContainer.setAttribute("aria-labelledby", "myModalLabel");
+  modalContainer.setAttribute("aria-hidden", "true");
   modalContainer.innerHTML = `<div class="modal-dialog">
       <div class="modal-content">
 
@@ -84,8 +102,8 @@ export function modalAddingUser() {
         </div>
 
         <div class="modal-body">
-        <p>Type usernames</p>
-        <input type="text" placeholder="user1, user2, user3" id="more-users"></input>
+        <label for="more-users">Type usernames</label>
+        <input type="text" placeholder="user1, user2, user3" id="more-users" />
         <p id="more-user-container"></p>
         </div>
 
@@ -105,7 +123,9 @@ export function addMoreButton() {
 
   const backButton = document.createElement("a");
   backButton.id = "back-button";
+  backButton.href = "index.html";
   backButton.textContent = "Back to Arena";
+  backButton.setAttribute("aria-label", "Back to user input page");
 
   const addAnotherUserButton = document.createElement("button");
   addAnotherUserButton.type = "button";
