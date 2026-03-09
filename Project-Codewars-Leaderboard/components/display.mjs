@@ -56,31 +56,29 @@ export function tableDisplay() {
   table.id = "table-leaderboards";
   table.setAttribute("aria-label", "Codewars leaderboard table");
 
-  const tableHead = document.createElement("thead");
-  const column = document.createElement("tr");
-  const tableBody = document.createElement("tbody");
+  
+  const column = document.createElement("tr"); //row of the head
 
-  const tableHead0 = document.createElement("th");
-  tableHead0.scope = "col";
-  tableHead0.textContent = "POSITION";
+  const headPosition = document.createElement("th");
+  headPosition.scope = "col";
+  headPosition.textContent = "POSITION";
 
-  const tableHead1 = document.createElement("th");
-  tableHead1.scope = "col";
-  tableHead1.textContent = "USER";
+  const headUser = document.createElement("th");
+  headUser.scope = "col";
+  headUser.textContent = "USER";
 
-  const tableHead2 = document.createElement("th");
-  tableHead2.scope = "col";
-  tableHead2.textContent = "CLAN";
+  const headClan = document.createElement("th");
+  headClan.scope = "col";
+  headClan.textContent = "CLAN";
 
-  const tableHead3 = document.createElement("th");
-  tableHead3.scope = "col";
-  tableHead3.textContent = "HONOR";
+  const headHonor = document.createElement("th");
+  headHonor.scope = "col";
+  headHonor.textContent = "HONOR";
 
   const tableContainer = document.getElementById("table-container");
 
-  column.append(tableHead0, tableHead1, tableHead2, tableHead3);
-  tableHead.appendChild(column);
-  table.append(tableHead, tableBody);
+  column.append(headPosition, headUser, headClan, headHonor);
+  table.appendChild(column);
   tableContainer.appendChild(table);
 }
 
@@ -88,7 +86,7 @@ export function tableDisplay() {
 
 export function modalAddingUser() {
   const modalContainer = document.createElement("div");
-  modalContainer.classList = "modal fade";
+  modalContainer.classList.add("modal", "fade");
   modalContainer.id = "myModal";
   modalContainer.tabIndex = -1;
   modalContainer.setAttribute("aria-labelledby", "myModalLabel");
@@ -135,3 +133,10 @@ export function addMoreButton() {
 
   buttonsContainer.append(backButton, addAnotherUserButton);
 }
+
+export function buildTableUsers(data){
+  
+  
+}
+
+

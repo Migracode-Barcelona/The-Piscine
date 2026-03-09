@@ -30,10 +30,10 @@ submitButton.addEventListener("click", async () => {
   submitButton.disabled = true;
   submitButton.textContent = "Fetching...";
 
-  const fetchedUsers = await getUsersInput.fetchUsers(getUsersInput.getUser);
+  const fetchedUsers = await getUsersInput.fetchUsers(getUsersInput.getUser); //calling of fetching from get-users-input
   sessionStorage.setItem("fetchedUsers", JSON.stringify(fetchedUsers));
 
-  window.location.href = "leaderboard.html";
+  window.location.href = "leaderboard.html"; //forwarding
 });
 
 const userInput = document.getElementById("user-input");

@@ -1,6 +1,7 @@
 export let getUser = [];
 export let tempInput = "";
 export let inserteduser = [];
+export let results = [];
 
 // const userData = [];
 
@@ -46,24 +47,17 @@ export async function fetchUsers(users) {
   const usernames = [...new Set(users.map((user) => user.trim()).filter(Boolean))];
 
   if (usernames.length === 0) {
-    console.warn("[API] No usernames to fetch.");
+    console.warn("No usernames to fetch.");
     return [];
   }
-
-  const requests = usernames.map(async (username) => {
+  
+  for (const user of usernames) {
     try {
-      const res = await fetch(`${endpoint}${username}`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const userData = await res.json();
-      console.log(`[API] Fetched ${username}:`, userData);
-      return userData;
-    } catch (error) {
-      console.error(`[API] Failed to fetch ${username}:`, error);
-      return null;
-    }
-  });
-
-  const results = (await Promise.all(requests)).filter(Boolean);
-  console.log(`[API] Fetch complete: ${results.length}/${usernames.length} users fetched.`);
-  return results;
+      const res = await fetch(`${endpoint}${user}`);
+      const data = res.json();
+      results.push(data);
+    } catch(error) {
+        alert(`Failed to fetch: ${user}`, error);
+      }
+  } 
 }
