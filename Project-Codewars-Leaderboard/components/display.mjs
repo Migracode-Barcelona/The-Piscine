@@ -1,3 +1,5 @@
+import * as userData from "./get-users-input.mjs";
+
 export function displayInputForm() {
   const inputContainer = document.getElementById("input-form"); //div
 
@@ -29,22 +31,29 @@ export function displayInputForm() {
 export function categoryDisplay() {
   const overall = document.createElement("button");
   overall.id = "overall";
+  overall.classList = "category-button"
   overall.type = "button";
   overall.textContent = "Overall";
+  overall.dataset.action = "overall"; 
 
   const completedKatas = document.createElement("button");
   completedKatas.id = "completed-katas";
   completedKatas.type = "button";
+  completedKatas.classList = "category-button"
   completedKatas.textContent = "Completed Katas";
+  completedKatas.dataset.action = "completedKatas";
 
   const authoredKatas = document.createElement("button");
   authoredKatas.id = "authored-katas";
   authoredKatas.type = "button";
+  authoredKatas.classList = "category-button"
   authoredKatas.textContent = "Authored Katas";
+  authoredKatas.dataset.action = "authoredKatas";
 
   const ranks = document.createElement("button");
   ranks.id = "ranks";
   ranks.type = "button";
+  ranks.classList = "category-button"
   ranks.textContent = "Ranks";
 
   const categoryContainer = document.getElementById("category-nav");
@@ -134,6 +143,14 @@ export function addMoreButton() {
   buttonsContainer.append(backButton, addAnotherUserButton);
 }
 
+// export function addLanguageCat(){
+//   const languageContainer = document.getElementById("category-lang"); 
+  
+  
+
+// }
+
+
 export function buildTableUsers(data) {
   const table = document.getElementById("table-leaderboards");
   // if (!table) return;
@@ -145,7 +162,29 @@ export function buildTableUsers(data) {
   });
 
   const safeUsers = Array.isArray(data) ? data : [];
-  const rankedUsers = [...safeUsers].sort((a, b) => (b?.honor ?? 0) - (a?.honor ?? 0)); //basically default 0 if no honor
+  let rankedUsers = [...safeUsers].sort((a, b) => (b?.honor ?? 0) - (a?.honor ?? 0)); ;
+
+  // console.log(safeUsers);
+
+  // BUTTON EVENTLISTENERS CATEGORY
+  document.querySelectorAll(".category-button").forEach(buttton => {
+    buttton.addEventListener("click", (e) => {
+      switch (e.currentTarget.dataset.action) {
+        case 'overall': 
+          rankedUsers = [...safeUsers].sort((a, b) => (b?.honor ?? 0) - (a?.honor ?? 0)); 
+          return rankedUsers; 
+        case 'completedKatas': 
+          rankedUsers = [...safeUsers].sort((a,b) => (b?.codeChallenges.totalCompleted ?? 0) - (a?.codeChallenges.totalCompleted ?? 0));
+          return rankedUsers;
+        case 'authoredKatas':
+          rankedUsers = [...safeUsers].sort((a,b) => (b?.codeChallenges.totalAuthored ?? 0) - (a?.codeChallenges.totalAuthored ?? 0));
+          return rankedUsers;
+      }
+    })
+  })
+
+
+  // rankedUsers = [...safeUsers].sort((a, b) => (b?.honor ?? 0) - (a?.honor ?? 0)); //basically default 0 if no honor
 
   rankedUsers.forEach((user, index) => {
     const row = document.createElement("tr");

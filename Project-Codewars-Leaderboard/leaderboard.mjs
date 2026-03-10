@@ -50,3 +50,6 @@ addMoreUser.addEventListener("click", async () => {
     console.log("[Local] Added users:", newUsers);
   }
 });
+
+//EVENT LISTENER CATEGORY
+

@@ -1,7 +1,7 @@
 export let getUser = [];
 export let tempInput = "";
 export let inserteduser = []; 
-const fetchedUsers = [];
+export const fetchedUsers = [];
 
 //GETTING THE USERS INPUT
 //idName = inputForm
