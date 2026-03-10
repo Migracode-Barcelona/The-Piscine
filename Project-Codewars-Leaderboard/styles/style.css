@@ -93,6 +93,11 @@ h2 {
   border: none;
   font-weight: 600;
   cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+#adding-user:hover {
+  transform: translateY(-2px);
 }
 
 #label-input_form {
@@ -145,6 +150,20 @@ a:focus-visible {
 
   #adding-user,
   #submit-button {
-    width: 100%;
+    width: 100%; 
   }
 }
+
+#submit-button {
+  transition: transform 0.2s ease-in;
+}
+
+#submit-button:hover {
+  transform: translateY(-2px);
+}
+
+#users-container {
+  text-align: center;
+}
+
+
