@@ -45,6 +45,7 @@ export function displayUser(array, displayContainer) {
 export async function fetchUsers(users) {
   const endpoint = "https://www.codewars.com/api/v1/users/";
   const usernames = [...new Set(users.map((user) => user.trim()).filter(Boolean))];
+  const fetchedUsers = [];
 
   if (usernames.length === 0) {
     console.warn("No usernames to fetch.");
@@ -54,10 +55,18 @@ export async function fetchUsers(users) {
   for (const user of usernames) {
     try {
       const res = await fetch(`${endpoint}${user}`);
-      const data = res.json();
-      results.push(data);
-    } catch(error) {
-        alert(`Failed to fetch: ${user}`, error);
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
       }
-  } 
+
+      const data = await res.json();
+      fetchedUsers.push(data);
+    } catch(error) {
+      alert(`Failed to fetch: ${user}`);
+      console.error(error);
+    }
+  }
+
+  results = fetchedUsers;
+  return fetchedUsers;
 }
