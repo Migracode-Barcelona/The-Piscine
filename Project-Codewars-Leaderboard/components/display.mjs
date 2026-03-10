@@ -145,6 +145,41 @@ export function addMoreButton() {
   buttonsContainer.append(backButton, addAnotherUserButton);
 }
 
+export function addLanguageDropdown(data) {
+  const languageContainer = document.getElementById("category-lang");
+
+  languageContainer.textContent = "";
+
+  const label = document.createElement("label");
+  label.htmlFor = "language-select";
+  label.textContent = "Language";
+
+  const select = document.createElement("select");
+  select.id = "language-select";
+
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = "Select Language";
+  select.appendChild(defaultOption);
+
+  const safeUsers = Array.isArray(data) ? data : [];
+  const languages = new Set();
+
+  safeUsers.forEach((user) => {
+    const userLanguages = user?.ranks?.languages ?? {};
+    Object.keys(userLanguages).forEach((language) => languages.add(language));
+  });
+
+  [...languages].sort().forEach((language) => {
+    const option = document.createElement("option");
+    option.value = language;
+    option.textContent = language;
+    select.appendChild(option);
+  });
+
+  languageContainer.append(label, select);
+}
+
 
 export function buildTableUsers(data, category = "overall", selectedLanguage = "") {
   const table = document.getElementById("table-leaderboards");

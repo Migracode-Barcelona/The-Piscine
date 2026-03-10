@@ -10,6 +10,7 @@ display.addMoreButton();
 //CATEGORY NAVIGATION
 display.categoryDisplay();
 display.tableDisplay();
+display.addLanguageDropdown(fetchedUsers);
 let activeCategory = "overall";
 let selectedLanguage = "";
 display.buildTableUsers(fetchedUsers, activeCategory, selectedLanguage);
@@ -28,6 +29,19 @@ document.querySelectorAll(".category-button").forEach((button) => {
     activeCategory = e.currentTarget.dataset.action ?? "overall";
     display.buildTableUsers(fetchedUsers, activeCategory, selectedLanguage);
   });
+
+  function bindLanguageSelectEvent() {
+  const languageSelect = document.getElementById("language-select");
+  if (!languageSelect) return;
+
+  languageSelect.addEventListener("change", (e) => {
+    selectedLanguage = e.target.value;
+    activeCategory = "ranks";
+    display.buildTableUsers(fetchedUsers, activeCategory, selectedLanguage);
+  });
+  }
+
+  bindLanguageSelectEvent();
 });
 
 //FUNCTION FOR SUBMIT BUTTON FOR ADD MORE USERS
@@ -56,6 +70,7 @@ addMoreUser.addEventListener("click", async () => {
     fetchedUsers = uniqueByUsername;
     sessionStorage.setItem("users", JSON.stringify(userArray));
     sessionStorage.setItem("fetchedUsers", JSON.stringify(fetchedUsers));
+    display.addLanguageDropdown(fetchedUsers);
     bindLanguageSelectEvent();
     display.buildTableUsers(fetchedUsers, activeCategory, selectedLanguage);
     console.log("[Local] Added users:", newUsers);
