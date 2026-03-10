@@ -134,9 +134,36 @@ export function addMoreButton() {
   buttonsContainer.append(backButton, addAnotherUserButton);
 }
 
-export function buildTableUsers(data){
-  
-  
-}
+export function buildTableUsers(data) {
+  const table = document.getElementById("table-leaderboards");
+  // if (!table) return;
 
+  // Keep the existing header row and remove previously rendered user rows.
+  const existingRows = table.querySelectorAll("tr");
+  existingRows.forEach((row, index) => {
+    if (index > 0) row.remove();
+  });
+
+  const safeUsers = Array.isArray(data) ? data : [];
+  const rankedUsers = [...safeUsers].sort((a, b) => (b?.honor ?? 0) - (a?.honor ?? 0)); //basically default 0 if no honor
+
+  rankedUsers.forEach((user, index) => {
+    const row = document.createElement("tr");
+
+    const positionCell = document.createElement("td");
+    positionCell.textContent = String(index + 1); //since array always start at 0 
+
+    const usernameCell = document.createElement("td");
+    usernameCell.textContent = user.username; 
+
+    const clanCell = document.createElement("td");
+    clanCell.textContent = user?.clan ?? "-";
+
+    const honorCell = document.createElement("td");
+    honorCell.textContent = String(user?.honor ?? 0);
+
+    row.append(positionCell, usernameCell, clanCell, honorCell);
+    table.appendChild(row);
+  });
+}
 

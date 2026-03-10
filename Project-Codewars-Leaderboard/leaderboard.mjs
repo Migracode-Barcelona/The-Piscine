@@ -10,7 +10,7 @@ display.addMoreButton();
 //CATEGORY NAVIGATION
 display.categoryDisplay();
 display.tableDisplay();
-
+display.buildTableUsers(fetchedUsers);
 display.modalAddingUser();
 
 //BUTTON FOR ADDING MORE USERS (EVENTLISTENER)
@@ -46,7 +46,7 @@ addMoreUser.addEventListener("click", async () => {
     fetchedUsers = uniqueByUsername;
     sessionStorage.setItem("users", JSON.stringify(userArray));
     sessionStorage.setItem("fetchedUsers", JSON.stringify(fetchedUsers));
-    
+    display.buildTableUsers(fetchedUsers);
     console.log("[Local] Added users:", newUsers);
   }
 });
