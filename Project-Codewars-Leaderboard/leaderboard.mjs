@@ -10,7 +10,9 @@ display.addMoreButton();
 //CATEGORY NAVIGATION
 display.categoryDisplay();
 display.tableDisplay();
-display.buildTableUsers(fetchedUsers);
+let activeCategory = "overall";
+let selectedLanguage = "";
+display.buildTableUsers(fetchedUsers, activeCategory, selectedLanguage);
 display.modalAddingUser();
 
 //BUTTON FOR ADDING MORE USERS (EVENTLISTENER)
@@ -18,6 +20,14 @@ const addUserButton = document.getElementById("add-another_user");
 addUserButton.addEventListener("click", () => {
   const modal = new bootstrap.Modal(document.getElementById("myModal"));
   modal.show();
+});
+
+//EVENT LISTENER CATEGORY
+document.querySelectorAll(".category-button").forEach((button) => {
+  button.addEventListener("click", (e) => {
+    activeCategory = e.currentTarget.dataset.action ?? "overall";
+    display.buildTableUsers(fetchedUsers, activeCategory, selectedLanguage);
+  });
 });
 
 //FUNCTION FOR SUBMIT BUTTON FOR ADD MORE USERS
@@ -46,10 +56,8 @@ addMoreUser.addEventListener("click", async () => {
     fetchedUsers = uniqueByUsername;
     sessionStorage.setItem("users", JSON.stringify(userArray));
     sessionStorage.setItem("fetchedUsers", JSON.stringify(fetchedUsers));
-    display.buildTableUsers(fetchedUsers);
+    bindLanguageSelectEvent();
+    display.buildTableUsers(fetchedUsers, activeCategory, selectedLanguage);
     console.log("[Local] Added users:", newUsers);
   }
 });
-
-//EVENT LISTENER CATEGORY
-

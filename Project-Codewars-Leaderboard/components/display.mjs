@@ -31,30 +31,31 @@ export function displayInputForm() {
 export function categoryDisplay() {
   const overall = document.createElement("button");
   overall.id = "overall";
-  overall.classList = "category-button"
+  overall.classList = "category-button";
   overall.type = "button";
   overall.textContent = "Overall";
-  overall.dataset.action = "overall"; 
+  overall.dataset.action = "overall";
 
   const completedKatas = document.createElement("button");
   completedKatas.id = "completed-katas";
   completedKatas.type = "button";
-  completedKatas.classList = "category-button"
+  completedKatas.classList = "category-button";
   completedKatas.textContent = "Completed Katas";
   completedKatas.dataset.action = "completedKatas";
 
   const authoredKatas = document.createElement("button");
   authoredKatas.id = "authored-katas";
   authoredKatas.type = "button";
-  authoredKatas.classList = "category-button"
+  authoredKatas.classList = "category-button";
   authoredKatas.textContent = "Authored Katas";
   authoredKatas.dataset.action = "authoredKatas";
 
   const ranks = document.createElement("button");
   ranks.id = "ranks";
   ranks.type = "button";
-  ranks.classList = "category-button"
+  ranks.classList = "category-button";
   ranks.textContent = "Ranks";
+  ranks.dataset.action = "ranks";
 
   const categoryContainer = document.getElementById("category-nav");
   categoryContainer.append(overall, completedKatas, authoredKatas, ranks);
@@ -83,6 +84,7 @@ export function tableDisplay() {
   const headHonor = document.createElement("th");
   headHonor.scope = "col";
   headHonor.textContent = "HONOR";
+  headHonor.id = "score";
 
   const tableContainer = document.getElementById("table-container");
 
@@ -143,17 +145,12 @@ export function addMoreButton() {
   buttonsContainer.append(backButton, addAnotherUserButton);
 }
 
-// export function addLanguageCat(){
-//   const languageContainer = document.getElementById("category-lang"); 
-  
-  
 
-// }
-
-
-export function buildTableUsers(data) {
+export function buildTableUsers(data, category = "overall", selectedLanguage = "") {
   const table = document.getElementById("table-leaderboards");
-  // if (!table) return;
+  if (!table) return;
+
+  const scoreHeader = document.getElementById("score");
 
   // Keep the existing header row and remove previously rendered user rows.
   const existingRows = table.querySelectorAll("tr");
@@ -162,47 +159,60 @@ export function buildTableUsers(data) {
   });
 
   const safeUsers = Array.isArray(data) ? data : [];
-  let rankedUsers = [...safeUsers].sort((a, b) => (b?.honor ?? 0) - (a?.honor ?? 0)); ;
+  let rankedUsers = [...safeUsers];
+  let scoreAccessor = (user) => user?.honor ?? 0;
 
-  // console.log(safeUsers);
-
-  // BUTTON EVENTLISTENERS CATEGORY
-  document.querySelectorAll(".category-button").forEach(buttton => {
-    buttton.addEventListener("click", (e) => {
-      switch (e.currentTarget.dataset.action) {
-        case 'overall': 
-          rankedUsers = [...safeUsers].sort((a, b) => (b?.honor ?? 0) - (a?.honor ?? 0)); 
-          return rankedUsers; 
-        case 'completedKatas': 
-          rankedUsers = [...safeUsers].sort((a,b) => (b?.codeChallenges.totalCompleted ?? 0) - (a?.codeChallenges.totalCompleted ?? 0));
-          return rankedUsers;
-        case 'authoredKatas':
-          rankedUsers = [...safeUsers].sort((a,b) => (b?.codeChallenges.totalAuthored ?? 0) - (a?.codeChallenges.totalAuthored ?? 0));
-          return rankedUsers;
+  switch (category) {
+    case "completedKatas":
+      document.getElementById("category-lang").hidden = true;
+      scoreAccessor = (user) => user?.codeChallenges?.totalCompleted ?? 0;
+      rankedUsers.sort((a, b) => scoreAccessor(b) - scoreAccessor(a));
+      if (scoreHeader) scoreHeader.textContent = "COMPLETED";
+      break;
+    case "authoredKatas":
+      document.getElementById("category-lang").hidden = true;
+      scoreAccessor = (user) => user?.codeChallenges?.totalAuthored ?? 0;
+      rankedUsers.sort((a, b) => scoreAccessor(b) - scoreAccessor(a));
+      if (scoreHeader) scoreHeader.textContent = "AUTHORED";
+      break;
+    case "ranks":
+      document.getElementById("category-lang").hidden = false;
+      if (selectedLanguage) {
+        scoreAccessor = (user) =>
+          user?.ranks?.languages?.[selectedLanguage]?.score ?? 0;
+        rankedUsers = rankedUsers.filter(
+          (user) => user?.ranks?.languages?.[selectedLanguage],
+        );
+        rankedUsers.sort((a, b) => scoreAccessor(b) - scoreAccessor(a));
+        if (scoreHeader) scoreHeader.textContent = "SCORE";
+      } else {
+        rankedUsers.sort((a, b) => (b?.honor ?? 0) - (a?.honor ?? 0));
+        if (scoreHeader) scoreHeader.textContent = "HONOR";
       }
-    })
-  })
-
-
-  // rankedUsers = [...safeUsers].sort((a, b) => (b?.honor ?? 0) - (a?.honor ?? 0)); //basically default 0 if no honor
+      break;
+    case "overall":
+    default:
+      rankedUsers.sort((a, b) => (b?.honor ?? 0) - (a?.honor ?? 0));
+      if (scoreHeader) scoreHeader.textContent = "HONOR";
+      break;
+  }
 
   rankedUsers.forEach((user, index) => {
     const row = document.createElement("tr");
 
     const positionCell = document.createElement("td");
-    positionCell.textContent = String(index + 1); //since array always start at 0 
+    positionCell.textContent = String(index + 1); //since array always start at 0
 
     const usernameCell = document.createElement("td");
-    usernameCell.textContent = user.username; 
+    usernameCell.textContent = user.username;
 
     const clanCell = document.createElement("td");
     clanCell.textContent = user?.clan ?? "-";
 
     const honorCell = document.createElement("td");
-    honorCell.textContent = String(user?.honor ?? 0);
+    honorCell.textContent = String(scoreAccessor(user));
 
     row.append(positionCell, usernameCell, clanCell, honorCell);
     table.appendChild(row);
   });
 }
-
