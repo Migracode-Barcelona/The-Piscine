@@ -95,6 +95,13 @@ h2 {
   color: white;
 }
 
+#table-leaderboards tr:nth-child(2) {
+  background: linear-gradient(
+    rgba(255, 215, 0, 0.22),
+    rgba(255, 236, 140, 0.12)
+  );
+}
+
 .modal-content {
   background: rgba(15, 23, 42, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.2);
