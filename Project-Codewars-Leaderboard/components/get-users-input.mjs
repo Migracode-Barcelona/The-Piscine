@@ -1,9 +1,7 @@
 export let getUser = [];
 export let tempInput = "";
-export let inserteduser = [];
-export let results = [];
-
-// const userData = [];
+export let inserteduser = []; 
+const fetchedUsers = [];
 
 //GETTING THE USERS INPUT
 //idName = inputForm
@@ -45,10 +43,10 @@ export function displayUser(array, displayContainer) {
 export async function fetchUsers(users) {
   const endpoint = "https://www.codewars.com/api/v1/users/";
   const usernames = [...new Set(users.map((user) => user.trim()).filter(Boolean))];
-  const fetchedUsers = [];
+ 
 
   if (usernames.length === 0) {
-    console.warn("No usernames to fetch.");
+    alert("No usernames to fetch.");
     return [];
   }
   
@@ -63,10 +61,7 @@ export async function fetchUsers(users) {
       fetchedUsers.push(data);
     } catch(error) {
       alert(`Failed to fetch: ${user}`);
-      console.error(error);
     }
   }
-
-  results = fetchedUsers;
   return fetchedUsers;
 }

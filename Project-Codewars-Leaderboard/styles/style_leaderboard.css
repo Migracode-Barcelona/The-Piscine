@@ -13,8 +13,9 @@ body {
 
 #button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1rem;
   width: min(900px, 95vw);
   margin-bottom: 1.5rem;
@@ -81,4 +82,17 @@ h2 {
   padding: 0.7rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   text-align: left;
+}
+
+.modal-content {
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: white;
+}
+
+.modal-header,
+.modal-footer {
+  border-color: rgba(255, 255, 255, 0.2) !important;
 }

@@ -11,14 +11,14 @@
 }
 
 :root {
-  --backgroundcolor: radial-gradient(circle at top, #1f2a44, #0b1220 60%, #060b13);
+  --backgroundcolor: linear-gradient(to bottom left, #0f172a, #1e1a78, #0f172a);
   --primary-font-h1: "Kanit";
   --secondary-font-weight: "Kanit";
   --font-primary-color: white;
-  --font-secondary-color: #0b1220;
+  --font-secondary-color: black;
   --font-size-h1: clamp(2.2rem, 7vw, 4.3rem);
   --font-size-h2: 20px;
-  --color-extra: #c9d2ea;
+  --color-extra: gray;
   --surface: rgba(255, 255, 255, 0.08);
   --focus-ring: #9dd8ff;
 }
@@ -29,14 +29,18 @@ body {
   min-height: 100%;
   margin: 0;
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-body {
+/* body {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem 1rem;
-}
+} */
 
 main {
   width: min(760px, 95vw);
@@ -57,7 +61,7 @@ h1 {
   font-family: var(--primary-font-h1);
   font-size: var(--font-size-h1);
   font-weight: bold;
-  background: -webkit-linear-gradient(#89b4ff, #ffffff);
+  background: -webkit-linear-gradient(#5863f8, white);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
